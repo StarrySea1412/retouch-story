@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<style>
+@font-face{font-family:"LXGW WenKai";src:url("../assets/fonts/wenkai-regular.woff2") format("woff2");font-weight:300 599}
+@font-face{font-family:"LXGW WenKai";src:url("../assets/fonts/wenkai-medium.woff2") format("woff2");font-weight:600 900}
+*{box-sizing:border-box;margin:0}
+body{width:900px;background:#e3e0d6;font-family:"LXGW WenKai","Microsoft YaHei",sans-serif;color:#26262b;padding:34px 30px}
+.sheet{background:#f1efe9;border:2px solid #26262b;border-radius:6px;padding:34px 36px 26px;box-shadow:8px 8px 0 rgba(70,68,74,.25);position:relative;overflow:hidden}
+.sheet::before{content:"";position:absolute;inset:0;background-image:radial-gradient(circle,rgba(70,68,74,.09) 1.1px,transparent 1.3px);background-size:24px 24px;pointer-events:none}
+.tag{display:inline-block;font-size:12px;letter-spacing:.28em;color:#fbf9f2;background:#26262b;padding:5px 14px;border-radius:3px;font-weight:700;position:relative}
+h1{font-size:44px;letter-spacing:-.01em;margin:14px 0 6px;line-height:1.25;position:relative}
+h1 em{font-style:normal;color:#a8365e}
+.sub{font-size:15.5px;color:#4d4c52;line-height:1.8;margin-bottom:20px;position:relative}
+.hero-card{position:relative;background:#fbf9f2;border:1.5px solid #b7b4a6;border-left:5px solid #a8365e;border-radius:4px;padding:15px 18px;display:flex;gap:16px;align-items:center;box-shadow:3px 3px 0 rgba(70,68,74,.16)}
+.hero-card b{font-size:17px;display:block;margin-bottom:3px}
+.hero-card p{font-size:12.8px;color:#7b7a80;line-height:1.7}
+.hero-num{flex:0 0 auto;font-family:Consolas,monospace;font-size:30px;font-weight:700;color:#1d1d21;background:#efe9e2;border:1px solid rgba(38,38,43,.35);border-radius:4px;padding:8px 14px;text-align:center;line-height:1.15}
+.hero-num small{display:block;font-size:10px;color:#7b7a80;font-weight:400;letter-spacing:.1em}
+.flow{display:flex;justify-content:center;gap:0;margin:16px 0 18px;position:relative}
+.flow span{font-family:Consolas,monospace;font-size:12px;color:#1d1d21;background:#fbf9f2;border:1.5px dashed rgba(38,38,43,.45);padding:6px 12px;border-radius:3px}
+.flow i{align-self:center;color:#a8365e;font-style:normal;padding:0 8px;font-size:14px}
+.grid{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.card{background:#fbf9f2;border:1.5px solid #b7b4a6;border-radius:4px;padding:14px 16px;box-shadow:3px 3px 0 rgba(70,68,74,.14)}
+.card h3{font-size:16px;display:flex;align-items:center;gap:9px;margin-bottom:8px}
+.card h3 i{font-style:normal;font-family:Consolas,monospace;font-size:12px;color:#fbf9f2;border-radius:3px;padding:3px 8px;letter-spacing:.08em}
+.card p{font-size:12.6px;color:#4d4c52;line-height:1.78}
+.card p b{color:#1c1c20}
+.c1 h3 i{background:#26262b}.c2 h3 i{background:#4e7a86}.c3 h3 i{background:#a8812f}
+.c4 h3 i{background:#a8365e}.c5 h3 i{background:#77588a}.c6 h3 i{background:#6f6a50}
+.bars{margin-top:14px;position:relative;background:#fbf9f2;border:1.5px solid #26262b;border-radius:4px;padding:12px 18px;display:flex;justify-content:space-between;align-items:center;box-shadow:3px 3px 0 rgba(70,68,74,.2)}
+.bars b{font-size:13.5px}
+.bars small{display:block;font-size:11px;color:#7b7a80;margin-top:2px}
+.pill{font-family:Consolas,monospace;font-size:11px;color:#1d1d21;border:1px solid rgba(38,38,43,.45);padding:4px 10px;border-radius:2px;background:#efe9e2;margin:3px 0 3px 6px;white-space:nowrap}
+.bars>div:last-child{display:flex;flex-wrap:wrap;justify-content:flex-end;max-width:300px}
+.foot{margin-top:14px;text-align:center;font-size:11px;color:#a6a49c;letter-spacing:.12em}
+</style>
+</head>
+<body>
+<div class="sheet">
+  <span class="tag">造物手记 VOL.13 · 2026.11</span>
+  <h1>修一张<em>照片</em></h1>
+  <p class="sub">从直出到成片的完整思路：诊断、二次构图、影调、色彩、局部、风格、克制——七个有顺序的决定，五枚小样在 AI 生成的「直出感」底片上现场开刀。</p>
+  <div class="hero-card">
+    <div class="hero-num">7+5<small>章 + 小样</small></div>
+    <div>
+      <b>标本：两张 AI 生成「直出感」底片（发灰静物 / 钨丝灯偏色咖啡馆）</b>
+      <p>全部交互为浏览器内真实像素运算：直方图逐像素统计、通道缩放式白平衡、HSL 色相区间处理、径向合成局部光——确定性可复现，随时可回到直出。</p>
+    </div>
+  </div>
+  <div class="flow"><span>诊断三问</span><i>→</i><span>二次构图</span><i>→</i><span>影调骨架</span><i>→</i><span>白平衡/HSL</span><i>→</i><span>局部光</span><i>→</i><span>风格与克制</span></div>
+  <div class="grid">
+    <div class="card c1"><h3><i>01</i>诊断</h3><p>直方图三连问：曝没曝对 / 反差够不够 / 细节切没切 · 说意图 · <b>想代价</b>——提阴影放噪点、拉饱和毁肤色，账单晚点到</p></div>
+    <div class="card c2"><h3><i>02</i>二次构图</h3><p>裁剪是第一刀：<b>视线留白 / 地平线 / 主体占比</b> · 裁剪=放大，画质在消耗 · 裁完的直方图才是有效直方图</p></div>
+    <div class="card c3"><h3><i>03</i>影调</h3><p>曝光定基准 → 对比定骨架 → <b>高光/阴影分区找回细节</b> · 中间调目标带 110–130 · 顺序错了全白搭</p></div>
+    <div class="card c4"><h3><i>04</i>色彩</h3><p><b>白平衡先归位，HSL 再站队</b> · 中性灰归位全图归位 · 治闷绿：降明度不是拉饱和 · 全局饱和度一根手指都不碰</p></div>
+    <div class="card c5"><h3><i>05</i>局部与风格</h3><p>渐晕 15% 收视线、径向提亮给舞台（数字加/减光棒）· <b>色调分离</b>是风格化最大杠杆 · 组片一致性 = 风格的复利</p></div>
+    <div class="card c6"><h3><i>06</i>克制</h3><p><b>「修过但看不出来」是最高评价</b> · 三条停手判据（100% 放大 / 三天后再看 / 说得出理由）· 按输出尺寸锐化导出才闭环</p></div>
+  </div>
+  <div class="bars">
+    <div><b>五枚现场小样</b><small>直方图诊断台 / 裁剪台 / 白平衡+HSL 台 / 局部光台 / Before-After 总装 —— 拖滑杆就是开药方</small></div>
+    <div><span class="pill">单文件 0 依赖</span><span class="pill">AI 生成底片</span><span class="pill">LXGW 文楷子集</span><span class="pill">GitHub Pages</span></div>
+  </div>
+  <p class="foot">STARRYSEA1412.GITHUB.IO/RETOUCH-STORY · DARKROOM / 2026</p>
+</div>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<section class="chapter" id="ch3">
+  <div class="ch-head">
+    <div class="ch-num"><b>03</b>CHAPTER<br/>00:02</div>
+    <div class="ch-title">
+      <h2>影调：先拉骨架</h2>
+      <p>颜色再漂亮，影调塌了都白搭。三步走：曝光定基准 → 对比定骨架 → 高光阴影找回细节</p>
+    </div>
+  </div>
+  <div class="ch-body">
+    <p class="lede">影调是一张照片的骨架，黑白看最清楚——把照片去色，如果黑白版本就好看，彩色的成片不会差。<strong>骨架的搭建顺序是固定的</strong>：先曝光，再对比，再高光阴影，最后才是白色/黑色色阶这种精修。</p>
+    <h3>第一步：曝光定基准</h3>
+    <p>把中间调送到它该在的位置。静物小品的中间调落在直方图 <code>110–130</code> 一带比较舒服；人像脸部要更亮一些。判断标准不是数值，是「画面里最重要的东西，亮得刚刚好」。回到诊断台的直方图：拖曝光滑杆时，整座波形山会<strong>整体平移</strong>——这就是曝光的本质：全局乘一个系数。</p>
+    <h3>第二步：对比定骨架</h3>
+    <p>发灰的照片，直方图挤成一座窄塔。对比度的本质是<strong>把山从中间往两边掰</strong>：亮的更亮、暗的更暗，塔变成山脉。掰多少看内容——静物小品可以温柔一点，街头硬照可以狠一点。</p>
+    <h3>第三步：高光与阴影各自找回细节</h3>
+    <p>曝光和对比是「一刀切」，高光/阴影滑杆是「分区域精修」：只压最亮的部分找回窗框细节，只提最暗的部分让桌面纹理浮出来，<em>中间调几乎不动</em>。这是数字暗房比胶片宽容的地方——但宽容不等于无限，RAW 才有得救，JPEG 的高光切了就是切了。</p>
+    <div class="pull">顺序固定的原因：先调色再调曝光，等于先绣花再裁布——花色全歪。</div>
+    <div class="demo" id="d1b">
+      <div class="demo-head"><span class="demo-tag">DEMO 01 · 续</span><span class="demo-title">把病人甲的影调立起来<span class="hint">照着诊断单拖</span></span></div>
+      <div class="demo-body">
+        <div class="hd-wrap">
+          <div class="hd-photo"><canvas id="hd-cv2" width="880" height="520"></canvas></div>
+          <div>
+            <div class="hd-hist"><h5>LUMINANCE HISTOGRAM · 影调立起来之后</h5><canvas id="hd-hist2" width="440" height="180"></canvas></div>
+            <div class="hd-diag" id="hd-diag2">目标：中间调送到 110–130，山的两翼展开，不碰两端。</div>
+          </div>
+        </div>
+        <div class="controls">
+          <div class="ctl"><label>曝光（EV）<b id="hd-ev2">0.0</b></label><input type="range" id="hd-e2" min="-20" max="20" value="7"/></div>
+          <div class="ctl"><label>对比度<b id="hd-cv3">0</b></label><input type="range" id="hd-c2" min="-20" max="20" value="8"/></div>
+          <div class="ctl"><label>高光回收<b id="hd-hv">0</b></label><input type="range" id="hd-h" min="0" max="20" value="4"/></div>
+        </div>
+        <div class="hd-read">
+          <div>中位亮度<b id="hd-med2">—</b></div>
+          <div>两翼展开度<b id="hd-spread">—</b></div>
+          <div>参考值<b>125 ± 10</b></div>
+        </div>
+      </div>
+      <div class="demo-foot">与 DEMO 01 同一张底片、同一套运算，叠加了高光回收（只压最亮 15% 像素）。拖到中位亮度进入绿区、直方图两翼展开——「发灰」病就治好了大半。</div>
+    </div>
+    <p>影调立起来了，画面已经有了立体感。但颜色还病着——绿色发闷、白平衡存疑。下一章进色彩。</p>
+  </div>
+</section>

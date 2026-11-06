@@ -1,0 +1,51 @@
+<section class="chapter" id="ch1">
+  <div class="ch-head">
+    <div class="ch-num"><b>01</b>CHAPTER<br/>00:00</div>
+    <div class="ch-title">
+      <h2>修之前先诊断</h2>
+      <p>没问诊就开药方，是修图最常见的事故。诊断三连：问题是什么？想要什么感觉？代价是什么？</p>
+    </div>
+  </div>
+  <div class="ch-body">
+    <p class="lede">拿到一张直出照片，手痒想先拉个饱和度——停。先做三件不花钱的事：<strong>看直方图、说意图、想代价</strong>。</p>
+    
+    <div class="fig"><div class="frame">
+      <img src="assets/art/ch1.webp" alt="单眼折纸鸟医生戴头镜用放大镜检查灯箱上的底片" width="1152" height="832" loading="lazy" style="width:100%;border:1px solid var(--line)"/>
+    </div><figcaption><span><b>FIG. 02</b> 先诊断后开药：直方图是照片的体检报告</span><span>INK &amp; GOUACHE / 2026</span></figcaption></div>
+
+<h3>直方图会说话</h3>
+    <p>直方图是照片的体检报告：横轴是亮度 0（纯黑）到 255（纯白），纵轴是该亮度上压着多少像素。它回答不了「好不好看」，但能客观回答三个问题——<strong>曝没曝对、反差够不够、有没有细节被切掉</strong>。看本文的病人甲（阴天静物底片）：</p>
+    <ul>
+      <li>波形<strong>整体堆在左半边</strong>，右侧大片空白——欠曝倾向，画面发闷的根源；</li>
+      <li>波形<strong>两端没顶到边</strong>——好消息：没有死黑死白，细节都在，有救；</li>
+      <li>中间调挤成一座窄塔——<strong>对比度不足</strong>，这就是「发灰」的直方图长相。</li>
+    </ul>
+    <div class="demo" id="d1">
+      <div class="demo-head"><span class="demo-tag">DEMO 01 · 直方图诊断台</span><span class="demo-title">拖滑杆，看直方图搬家<span class="hint">曝光 / 对比度</span></span></div>
+      <div class="demo-body">
+        <div class="hd-wrap">
+          <div class="hd-photo"><canvas id="hd-cv" width="880" height="520"></canvas></div>
+          <div>
+            <div class="hd-hist"><h5>LUMINANCE HISTOGRAM · 亮度直方图</h5><canvas id="hd-hist" width="440" height="180"></canvas></div>
+            <div class="hd-diag" id="hd-diag"></div>
+          </div>
+        </div>
+        <div class="controls">
+          <div class="ctl"><label>曝光（EV）<b id="hd-ev">0.0</b></label><input type="range" id="hd-e" min="-20" max="20" value="0"/></div>
+          <div class="ctl"><label>对比度<b id="hd-c1v">0</b></label><input type="range" id="hd-c" min="-20" max="20" value="0"/></div>
+          <div class="ctl-btn"><button class="ghost" id="hd-reset">回到直出</button></div>
+        </div>
+        <div class="hd-read">
+          <div>中位亮度<b id="hd-med">—</b></div>
+          <div>高光剪切<b id="hd-clip">—</b></div>
+          <div>暗部剪切<b id="hd-dark">—</b></div>
+        </div>
+      </div>
+      <div class="demo-foot">直方图为真实像素统计：每次滑杆变动，对底片按「曝光 × 2^EV、对比度 S 曲线」重算后再统计。两张「病」与「药」的效果当场可见——这就是诊断的意义：先看报告，再动手。</div>
+    </div>
+    <h3>说意图，再想代价</h3>
+    <p>直方图回答「技术上怎么了」，意图回答「情绪上要去哪」。同一张静物：想要<b>清晨通透感</b>，往高调走、色温偏冷一点；想要<b>黄昏胶片感</b>，往低调走、阴影染暖。两条路都成立——<em>但得先选一条，因为后面的每一步都会跟着它走</em>。代价意识也在这时建立：提亮阴影会放大噪点，压高光会损失层次，拉饱和会让肤色失真。<strong>修图的每个决定都有账单，只是账单晚一点到。</strong></p>
+    <div class="note"><b>本文病人的诊断单：</b>问题 = 整体发灰（对比不足）+ 绿色发闷（色相不纯）+ 构图松（花瓶偏小）；意图 = 清晨通透的静物小品；代价预算 = 可以牺牲一点阴影细节换干净。</div>
+    <p>诊断完了，第一刀不是调色——是裁剪。下一章：二次构图。</p>
+  </div>
+</section>
