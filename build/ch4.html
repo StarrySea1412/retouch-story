@@ -17,31 +17,32 @@
     <p>照片里的病人乙（咖啡馆底片）是典型的钨丝灯偏色：整张泛橙黄。校白平衡的本质是<strong>给全图乘一组反向系数</strong>：暖了就加蓝减红。判断标准最朴素的办法是找画面里「本该是灰白的东西」——白墙、白杯子、餐巾纸——它们归位了，全图就归位了。色温滑杆往左（偏蓝）走，橙色退潮。</p>
     <h3>HSL：只动该动的颜色</h3>
     <p>HSL 把颜色拆成色相（H）、饱和度（S）、明度（L）三个旋钮，每个颜色通道各有一套。它的价值在于<strong>精准</strong>：全局拉饱和，肤色跟着遭殃；HSL 里单独压「绿色饱和度」，叶子退后、花枝凸出，画面立刻有了主次。病人甲的「绿色发闷」正治这个：绿色明度略降 + 饱和微升，叶子的绿从「蒙了一层灰」变成「深绿」。</p>
-    <div class="demo" id="d3">
-      <div class="demo-head"><span class="demo-tag">DEMO 03 · 白平衡 + HSL 台</span><span class="demo-title">先归位，再站队<span class="hint">病人乙治偏色 · 病人甲治绿</span></span></div>
+    <div class="demo" id="dhsl">
+      <div class="demo-head"><span class="demo-tag">DEMO 05 · HSL 全通道台</span><span class="demo-title">八个色带，各管各的<span class="hint">选色带 → 拖三滑杆</span></span></div>
       <div class="demo-body">
         <div class="wb-wrap">
-          <div class="wb-photo"><canvas id="wb-cv" width="880" height="500"></canvas></div>
+          <div class="wb-photo"><canvas id="hs-cv" width="880" height="500"></canvas></div>
           <div class="wb-side">
-            <div class="wb-temp"><span>冷</span><div class="bar"></div><span>暖</span></div>
-            <div class="ctl"><label>色温<b id="wb-tv">+0</b></label><input type="range" id="wb-t" min="-10" max="10" value="0"/></div>
-            <div class="ctl"><label>色调（绿↔品）<b id="wb-gv">+0</b></label><input type="range" id="wb-g" min="-10" max="10" value="0"/></div>
-            <div class="ctl"><label>绿色饱和度<b id="wb-sv">0</b></label><input type="range" id="wb-s" min="-10" max="10" value="0"/></div>
-            <div class="wb-kv" id="wb-kv"></div>
-            <div class="wb-note" id="wb-note"></div>
+            <div style="display:flex;gap:5px;flex-wrap:wrap" id="hs-bands"></div>
+            <div class="ctl"><label>色相（°）<b id="hs-hv">+0</b></label><input type="range" id="hs-h" min="-30" max="30" value="0"/></div>
+            <div class="ctl"><label>饱和度<b id="hs-sv">0</b></label><input type="range" id="hs-s" min="-50" max="50" value="0"/></div>
+            <div class="ctl"><label>明度<b id="hs-lv">0</b></label><input type="range" id="hs-l" min="-50" max="50" value="0"/></div>
+            <div class="ctl" style="margin-top:2px"><label>白平衡（全局）<b id="hs-tv">+0</b></label><input type="range" id="hs-t" min="-10" max="10" value="0"/></div>
+            <div class="wb-kv" id="hs-kv"></div>
+            <div class="wb-note" id="hs-note"></div>
           </div>
         </div>
         <div class="controls">
           <div class="ctl-btn">
-            <span class="chip" id="wb-case1" aria-pressed="true">病人乙 · 咖啡馆偏橙</span>
-            <span class="chip" id="wb-case2">病人甲 · 绿色发闷</span>
-            <button class="ghost" id="wb-reset">复位</button>
+            <span class="chip" id="hs-case1" aria-pressed="true">病人乙 · 咖啡馆</span>
+            <span class="chip" id="hs-case2">病人甲 · 静物</span>
+            <button class="ghost" id="hs-reset">复位</button>
           </div>
         </div>
       </div>
-      <div class="demo-foot">病人乙按「色温 −7 / 色调 −2」 presets 演示钨丝灯归位；病人甲按「绿色饱和 +3 / 明度 −2」治闷绿。切换病例时滑杆自动跳到该病例的处方——两套运算独立，互不污染。</div>
+      <div class="demo-foot">每个像素先转 HSV，按色相落进八个色带（边界各 15° 羽化过渡），带内调整加权重混合——Lightroom HSL 的简化实现。选「绿」压明度治闷绿；选「橙」动饱和会直打咖啡拉花和木桌——颜色各就各位，这就是 HSL 的意义。</div>
     </div>
-    <h3>一个反直觉的技巧</h3>
+<h3>一个反直觉的技巧</h3>
     <p>颜色「闷」的时候，第一反应往往是拉饱和度。<strong>先试试降明度</strong>：把闷绿的颜色明度压下来，饱和度几乎不用动，绿色自己就「沉」下去了——因为发闷的常见原因不是饱和不够，而是颜色里混了太多白（明度偏高）。降明度治闷，升饱和治淡，两副药别搞混。</p>
   </div>
 </section>

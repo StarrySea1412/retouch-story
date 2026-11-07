@@ -47,53 +47,55 @@ async function shot(sel, name, fn) {
   await page.screenshot({ path: join(shots, name), clip: { x: Math.max(0, box.x - 6), y: Math.max(0, box.y - 6), width: Math.min(1440, box.width + 12), height: Math.min(2400, box.height + 12) } });
 }
 
-/* D1 直方图诊断台：拖曝光看直方图搬家 */
+/* D1 直方图诊断台 */
 await shot("#d1", "01-d1-sooc.png");
 await shot("#d1", "02-d1-lift.png", async () => {
   await page.$eval("#hd-e", (e) => { e.value = 12; e.dispatchEvent(new Event("input", { bubbles: true })); });
   await page.$eval("#hd-c", (e) => { e.value = 14; e.dispatchEvent(new Event("input", { bubbles: true })); });
 });
 
-/* D1b 影调立起来（ch3） */
-await shot("#d1b", "03-d1b-tone.png", async () => {
-  await page.$eval("#hd-h", (e) => { e.value = 4; e.dispatchEvent(new Event("input", { bubbles: true })); });
-});
-
-/* D2 裁剪台：三分版 + 特写 */
-await shot("#d2", "04-d2-thirds.png", async () => {
+/* D2 裁剪台 */
+await shot("#d2", "03-d2-thirds.png", async () => {
   await page.locator('#cr-preset button[data-i="1"]').click();
 });
-await shot("#d2", "05-d2-tight.png", async () => {
-  await page.locator('#cr-preset button[data-i="2"]').click();
+
+/* D3 色阶台：黑场拖动 + 自动 */
+await shot("#dlv", "04-lv-default.png");
+await shot("#dlv", "05-lv-auto.png", async () => {
+  await page.click("#lv-auto");
 });
 
-/* D3 白平衡：病人乙归位 + 病人甲治绿 */
-await shot("#d3", "06-d3-cafe.png", async () => {
-  await page.locator("#wb-case1").click();
+/* D4 曲线台：哑光预设 + G 通道 */
+await shot("#dcv", "06-cv-matte.png", async () => {
+  await page.locator('#cvc-presets button[data-i="2"]').click();
 });
-await shot("#d3", "07-d3-still.png", async () => {
-  await page.locator("#wb-case2").click();
+await shot("#dcv", "07-cv-green.png", async () => {
+  await page.locator('#cvc-tabs button[data-ch="g"]').click();
 });
 
-/* D4 局部光台 */
-await shot("#d4", "08-d4-local.png", async () => {
+/* D5 HSL：绿带压明度（病人甲） */
+await shot("#dhsl", "08-hsl-green.png", async () => {
+  await page.locator("#hs-case2").click();
+});
+await shot("#dhsl", "09-hsl-orange.png", async () => {
+  await page.locator("#hs-case1").click();
+});
+
+/* D6 局部光台 */
+await shot("#d4", "10-d4-local.png", async () => {
   await page.$eval("#lg-v", (e) => { e.value = 22; e.dispatchEvent(new Event("input", { bubbles: true })); });
 });
 
-/* D5 Before/After：拖分割线 */
-await shot("#d5", "09-ba-half.png", async () => {
+/* D7 Before/After：拖分割线 */
+await shot("#d5", "11-ba-half.png", async () => {
   const box = await (await page.$("#ba-stage")).boundingBox();
   await page.mouse.move(box.x + box.width * 0.5, box.y + box.height / 2);
   await page.mouse.down();
   await page.mouse.move(box.x + box.width * 0.72, box.y + box.height / 2, { steps: 5 });
   await page.mouse.up();
 });
-await shot("#d5", "10-ba-sooc.png", async () => {
-  await page.locator('#ba-steps .chip[data-k="tone"]').click();
-  await page.locator('#ba-steps .chip[data-k="green"]').click();
-});
 
-/* 移动端：375 宽溢出检查 */
+/* 移动端溢出 */
 const mp = await browser.newPage({ viewport: { width: 375, height: 720 }, deviceScaleFactor: 2 });
 mp.on("pageerror", (e) => errors.push("m-pageerror: " + e.message));
 await mp.goto(base, { waitUntil: "networkidle" });
@@ -104,7 +106,7 @@ const overflow = await mp.evaluate(() => {
   document.querySelectorAll("body *").forEach((el) => {
     const r = el.getBoundingClientRect();
     if (r.width > 0 && (r.right > dw + 1 || r.left < -1)) {
-      if (el.closest(".tablewrap, .code, .hd-hist")) return;
+      if (el.closest(".tablewrap, .code, .hd-hist, .lv-histbox, .cv2-editor")) return;
       const cls = (el.className && el.className.toString().slice(0, 40)) || el.tagName;
       bad.push(cls + " right=" + Math.round(r.right));
     }
@@ -112,8 +114,6 @@ const overflow = await mp.evaluate(() => {
   return { scrollW: document.documentElement.scrollWidth, clientW: dw, bad: [...new Set(bad)].slice(0, 12) };
 });
 console.log("mobile overflow:", JSON.stringify(overflow));
-await mp.screenshot({ path: join(shots, "11-mobile.png") });
-
+await mp.screenshot({ path: join(shots, "12-mobile.png") });
 console.log("errors:", errors.length ? errors : "none");
-await browser.close();
-server.close();
+await browser.close(); server.close();
